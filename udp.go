@@ -108,6 +108,7 @@ func (s *Server) serveUDPConn(udpPacket []byte, reply func([]byte) error) error 
 		targetAddrSpec.FQDN = string(targetAddrRaw[1+1 : 1+1+addrLen])
 		targetAddrRawSize += (1 + addrLen)
 	default:
+		s.config.Logger.Printf("TargetAddrRaw[0]: %v", targetAddrRaw[0])
 		s.config.Logger.Printf("udp socks: Failed to get UDP package header: %v", errUnrecognizedAddrType)
 		return errUnrecognizedAddrType
 	}
